@@ -1,0 +1,200 @@
+
+*{box-sizing:border-box}
+:root{
+  --bg:#05070d;
+  --bg2:#0d1527;
+  --panel:#0a1020;
+  --panel2:#101833;
+  --text:#f7fbff;
+  --muted:#bfd0f3;
+  --border:#23304f;
+  --shadow:0 14px 40px rgba(0,0,0,.38);
+  --radius:18px;
+}
+a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgb(0, 0, 0, .31);
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 5px;
+}
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(0,194,168,.12), transparent 22%),
+    radial-gradient(circle at top right, rgba(155,93,229,.14), transparent 26%),
+    linear-gradient(145deg,#02040a,#091126 38%,#050a17 100%);
+}
+.app{max-width:1700px;margin:0 auto;padding:18px}
+.hero,.panel,.popup-card{
+  background:rgba(10,16,32,.94);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.hero{
+  padding:20px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:18px;
+  align-items:start;
+  margin-bottom:18px;
+}
+.hero h1{margin:0 0 10px;font-size:clamp(28px,4vw,48px)}
+.hero p{margin:0;color:var(--muted);line-height:1.7}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+button,input,select{
+  border:1px solid #2d3a5c;
+  background:#09111f;
+  color:#fff;
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:14px;
+}
+button{cursor:pointer;font-weight:700}
+button:hover{background:#12203b}
+.tab-btn.active,.quick-btn.active{outline:2px solid #7dd3fc}
+.toolbar{
+  padding:14px;
+  display:grid;
+  grid-template-columns:2fr 1.2fr 1.2fr 1fr auto;
+  gap:10px;
+  margin-bottom:18px;
+}
+.main-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+.view{display:none}
+.active-view{display:block}
+.legend-grid,.quick-grid,.mini-grid,.revision-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+.legend-item,.mini-card,.revision-card{
+  background:#0d1527;
+  border:1px solid #243250;
+  border-radius:14px;
+  padding:10px 12px;
+}
+.legend-item{display:flex;align-items:center;gap:10px;color:var(--muted)}
+.swatch{width:14px;height:14px;border-radius:50%}
+.table-panel{padding:14px;overflow:auto}
+.periodic-table{
+  display:grid;
+  grid-template-columns:repeat(18,minmax(58px,1fr));
+  gap:8px;
+  min-width:1180px;
+}
+.blank,.element{min-height:82px;border-radius:15px}
+.blank{opacity:0}
+.element{
+  position:relative;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+  overflow:hidden;
+  transition:.2s ease;
+}
+.element::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to top right, rgba(255,255,255,.05), transparent 55%);
+  pointer-events:none;
+}
+.element:hover{transform:translateY(-4px) scale(1.02)}
+.element.active{outline:3px solid rgba(255,255,255,.42)}
+.element.dim{opacity:.14;filter:grayscale(.45)}
+.num{font-size:11px;font-weight:700}
+.symbol{font-size:22px;font-weight:900;line-height:1}
+.name{font-size:10px;font-weight:700}
+.meta{font-size:10px;opacity:.92}
+.sidebar{display:grid;gap:18px;align-content:start}
+.info-block{line-height:1.75;color:var(--muted)}
+.quick-grid{grid-template-columns:1fr 1fr}
+#atomCanvas,#trendCanvas{
+  width:100%;
+  background:radial-gradient(circle at center, rgba(77,171,247,.08), rgba(0,0,0,.04));
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.flash-toolbar{display:flex;gap:10px;flex-wrap:wrap}
+.flash-wrap{min-height:420px;display:grid;place-items:center}
+.flashcard{
+  width:min(560px,94vw);
+  height:320px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .7s ease;
+  cursor:pointer;
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flash-side{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#101833,#0a1020);
+  border:1px solid #2b3b61;
+  border-radius:24px;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  text-align:center;
+  backface-visibility:hidden;
+  box-shadow:var(--shadow);
+}
+.flash-front .flash-symbol{font-size:72px;font-weight:900}
+.flash-front .flash-name{font-size:24px;margin-top:8px}
+.flash-back{transform:rotateY(180deg);line-height:1.8;color:var(--muted);font-size:16px}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chart-controls,.revision-header,.revision-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.revision-header{justify-content:space-between;margin-bottom:14px}
+.revision-card h3{margin:0 0 8px}
+.popup{
+  position:fixed;inset:0;background:rgba(0,0,0,.78);
+  display:grid;place-items:center;padding:16px;
+}
+.hidden{display:none!important}
+.popup-card{
+  width:min(860px,96vw);
+  max-height:90vh;
+  overflow:auto;
+  padding:20px;
+  position:relative;
+}
+.close-btn{position:absolute;top:12px;right:12px;width:42px;height:42px;padding:0;font-size:22px}
+.popup-title{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.popup-badge{
+  width:72px;height:72px;border-radius:18px;
+  display:grid;place-items:center;font-size:28px;font-weight:900;
+  border:1px solid rgba(255,255,255,.18)
+}
+.popup-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.popup-chip{
+  background:#0d1527;border:1px solid #243250;border-radius:14px;padding:12px
+}
+.orbital-boxes{display:grid;gap:8px;margin-top:12px}
+.orbital-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.boxset{display:flex;gap:6px;flex-wrap:wrap}
+.orbital-box{
+  width:28px;height:28px;border:1px solid #445a82;border-radius:6px;
+  display:grid;place-items:center;background:#07101d;font-size:14px
+}
+@media print{
+  body{background:#fff;color:#000}
+  .hero,.toolbar,.sidebar,.tabs,.popup,.flash-toolbar,.revision-actions,.legend-grid{display:none!important}
+  .view{display:none!important}
+  #revisionView{display:block!important}
+  .panel,.revision-card{box-shadow:none;border:1px solid #aaa;background:#fff;color:#000}
+}
+@media (max-width:1100px){
+  .main-grid,.hero,.split-grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .toolbar{grid-template-columns:1fr}
+  .quick-grid{grid-template-columns:1fr 1fr}
+}

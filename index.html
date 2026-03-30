@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Periodic Table Pro Advanced</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div>
+        <h1>Periodic Table Pro Advanced</h1>
+        <p>Separate-file project with popup details, flashcards, group study, valency mode, reaction tendency mode, orbital filling diagram, trend graph, printable revision sheet and a simple 3D atom view.</p>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" data-view="tableView">Table</button>
+        <button class="tab-btn" data-view="flashView">Flashcards</button>
+        <button class="tab-btn" data-view="groupView">Group Study</button>
+        <button class="tab-btn" data-view="revisionView">Revision Sheet</button>
+        <a href="V2/V2.html">V2</a>
+        <a href="V3/V3.html">V3</a>
+      </nav>
+    </header>
+
+    <section class="toolbar panel">
+      <input id="searchInput" type="text" placeholder="Search by name, symbol or atomic number" />
+      <select id="categoryFilter"><option value="all">All categories</option></select>
+      <select id="viewMode">
+        <option value="category">Category colors</option>
+        <option value="valency">Valency mode</option>
+        <option value="reactivity">Reaction tendency mode</option>
+        <option value="group">Group highlight</option>
+        <option value="block">Block mode</option>
+      </select>
+      <select id="groupFilter"><option value="all">All groups</option></select>
+      <button id="resetBtn">Reset</button>
+    </section>
+
+    <main class="main-grid">
+      <section class="content">
+        <section id="tableView" class="view active-view">
+          <div class="panel">
+            <h2>Legend</h2>
+            <div id="legend" class="legend-grid"></div>
+          </div>
+          <div class="panel table-panel">
+            <div id="periodicTable" class="periodic-table"></div>
+          </div>
+        </section>
+
+        <section id="flashView" class="view">
+          <div class="panel flash-toolbar">
+            <select id="flashFilter"><option value="all">All flashcards</option></select>
+            <button id="prevFlash">Previous</button>
+            <button id="flipFlash">Flip</button>
+            <button id="nextFlash">Next</button>
+          </div>
+          <div class="flash-wrap">
+            <div id="flashcard" class="flashcard">
+              <div class="flash-side flash-front"></div>
+              <div class="flash-side flash-back"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="groupView" class="view">
+          <div class="split-grid">
+            <div class="panel">
+              <h2>Group-wise Study Mode</h2>
+              <select id="groupStudySelect"></select>
+              <div id="groupStudyInfo" class="info-block"></div>
+              <div id="groupStudyElements" class="mini-grid"></div>
+            </div>
+            <div class="panel">
+              <h2>Trend Visualization</h2>
+              <div class="chart-controls">
+                <select id="trendMetric">
+                  <option value="trendRadius">Atomic radius trend</option>
+                  <option value="trendEN">Electronegativity trend</option>
+                </select>
+                <select id="trendScope">
+                  <option value="group">Selected group</option>
+                  <option value="period">Selected period</option>
+                </select>
+              </div>
+              <canvas id="trendCanvas" width="640" height="320"></canvas>
+              <div class="info-block" id="trendNotes"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="revisionView" class="view">
+          <div class="panel">
+            <div class="revision-header">
+              <h2>Printable Revision Sheet</h2>
+              <div class="revision-actions">
+                <button id="buildRevision">Build Sheet</button>
+                <button id="printSheet">Print</button>
+              </div>
+            </div>
+            <div id="revisionSheet" class="revision-grid"></div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="sidebar">
+        <div class="panel">
+          <h2>Selected Element</h2>
+          <div id="selectedSummary" class="info-block">Select any element card.</div>
+        </div>
+        <div class="panel">
+          <h2>Quick Filters</h2>
+          <div class="quick-grid">
+            <button class="quick-btn" data-quick="Metals">Metals</button>
+            <button class="quick-btn" data-quick="Nonmetals">Non-metals</button>
+            <button class="quick-btn" data-quick="Metalloids">Metalloids</button>
+            <button class="quick-btn" data-quick="Halogens">Halogens</button>
+            <button class="quick-btn" data-quick="Noble">Noble gases</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>3D Atom View</h2>
+          <canvas id="atomCanvas" width="320" height="320"></canvas>
+          <div id="atomCaption" class="info-block">A simple animated atom visualization for the selected element.</div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="popup" class="popup hidden">
+    <div class="popup-card">
+      <button id="closePopup" class="close-btn">×</button>
+      <div id="popupBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

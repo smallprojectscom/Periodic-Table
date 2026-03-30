@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Periodic Table Pro Ultimate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="hero glass">
+      <div>
+        <h1>Periodic Table Pro Ultimate</h1>
+        <p>Final polished version with compare mode, popup tabs, stronger 3D-style atom animation, detailed chemistry data, flashcards, group study, trend graph and printable revision sheet.</p>
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab active" data-view="tableView">Table</button>
+        <button class="tab" data-view="flashView">Flashcards</button>
+        <button class="tab" data-view="groupView">Group Study</button>
+        <button class="tab" data-view="revisionView">Revision</button>
+        <a href="../index.html">HOME</a>
+        <a href="../V2/V2.html">V2</a>
+      </nav>
+    </header>
+
+    <section class="toolbar glass">
+      <input id="searchInput" type="text" placeholder="Search name, symbol or atomic number">
+      <select id="categoryFilter"><option value="all">All categories</option></select>
+      <select id="modeFilter">
+        <option value="category">Category colors</option>
+        <option value="valency">Valency mode</option>
+        <option value="reactivity">Reaction tendency</option>
+        <option value="block">Block mode</option>
+        <option value="group">Group highlight</option>
+      </select>
+      <select id="groupFilter"><option value="all">All groups</option></select>
+      <button id="resetBtn">Reset</button>
+    </section>
+
+    <main class="layout">
+      <section class="main-content">
+        <section id="tableView" class="view active-view">
+          <div class="glass panel">
+            <h2>Legend</h2>
+            <div id="legend" class="legend-grid"></div>
+          </div>
+
+          <div class="glass panel compare-panel">
+            <div class="compare-top">
+              <h2>Compare Two Elements</h2>
+              <div id="compareSummary" class="info-block"></div>
+            </div>
+            <div class="compare-controls">
+              <select id="compareA"></select>
+              <select id="compareB"></select>
+            </div>
+            <div id="compareGrid" class="compare-grid"></div>
+          </div>
+
+          <div class="glass panel table-panel">
+            <div class="series-label lanth-label">Lanthanides</div>
+            <div class="series-label act-label">Actinides</div>
+            <div id="periodicTable" class="periodic-table"></div>
+          </div>
+        </section>
+
+        <section id="flashView" class="view">
+          <div class="glass panel flash-toolbar">
+            <select id="flashFilter"><option value="all">All flashcards</option></select>
+            <div class="flash-controls">
+              <button id="prevFlash">Previous</button>
+              <button id="flipFlash">Flip</button>
+              <button id="nextFlash">Next</button>
+            </div>
+            <div id="flashCounter" class="pill">1 / 1</div>
+          </div>
+          <div class="flash-wrap">
+            <div id="flashcard" class="flashcard">
+              <div class="flash-side flash-front"></div>
+              <div class="flash-side flash-back"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="groupView" class="view">
+          <div class="group-grid">
+            <div class="glass panel">
+              <h2>Group-wise Study</h2>
+              <select id="groupStudySelect"></select>
+              <div id="groupStudyInfo" class="info-block"></div>
+              <div id="groupStudyElements" class="mini-grid"></div>
+            </div>
+            <div class="glass panel">
+              <h2>Trend Visualization</h2>
+              <div class="chart-controls">
+                <select id="trendMetric">
+                  <option value="trendRadius">Atomic radius trend</option>
+                  <option value="trendEN">Electronegativity trend</option>
+                </select>
+                <select id="trendScope">
+                  <option value="group">Selected group</option>
+                  <option value="period">Current period</option>
+                </select>
+              </div>
+              <canvas id="trendCanvas" width="680" height="340"></canvas>
+              <div id="trendNotes" class="info-block"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="revisionView" class="view">
+          <div class="glass panel">
+            <div class="revision-top">
+              <h2>Printable Revision Sheet</h2>
+              <div class="revision-actions">
+                <button id="buildRevision">Build Sheet</button>
+                <button id="printSheet">Print</button>
+              </div>
+            </div>
+            <div id="revisionSheet" class="revision-grid"></div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="sidebar">
+        <div class="glass panel">
+          <h2>Selected Element</h2>
+          <div id="selectedSummary" class="info-block">Choose an element card.</div>
+        </div>
+        <div class="glass panel">
+          <h2>Quick Filters</h2>
+          <div class="quick-grid">
+            <button class="quick-btn" data-type="metal">Metals</button>
+            <button class="quick-btn" data-type="nonmetal">Non-metals</button>
+            <button class="quick-btn" data-type="metalloid">Metalloids</button>
+            <button class="quick-btn" data-type="halogen">Halogens</button>
+            <button class="quick-btn" data-type="noble">Noble gases</button>
+          </div>
+        </div>
+        <div class="glass panel">
+          <h2>Animated Atom View</h2>
+          <canvas id="atomCanvas" width="320" height="320"></canvas>
+          <div class="info-block">Animated 3D-style electron motion for the selected element.</div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="popup" class="popup hidden">
+    <div class="popup-card glass">
+      <button id="closePopup" class="close-btn">×</button>
+      <div id="popupBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
